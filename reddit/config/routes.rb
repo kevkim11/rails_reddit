@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :users
+  resources :users # :users, only: [:show, :new, :create]
 
   resources :subreddits
 

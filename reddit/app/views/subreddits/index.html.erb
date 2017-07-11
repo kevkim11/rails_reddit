@@ -1,6 +1,8 @@
 <h1>Subreddits/Index</h1>
 
 <h2>Subreddit Names</h2>
+<ol>
 <% @subreddits.each do |sr| %>
-    <p>r/<%= sr.name %></p>
+    <li>r/<%= sr.name %></li>
 <% end %>
+</ol>
