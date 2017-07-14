@@ -11,6 +11,15 @@
 -->
 
 <%= form_for @user, url: {action: "create"}, html: {class: "sign_up_form"} do |f| %>
+    <!--Error message-->
+    <% if @user.errors.any? %>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li> <%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
+
     <div class="field">
       <%= f.text_field :username, placeholder: "User Name", autofocus: true %>
     </div>
@@ -24,7 +33,7 @@
       <%= f.email_field :email, placeholder: "E-Mail", autofocus: true %>
     </div>
     <div class="field">
-      <%= f.password_field :encrypted_password, placeholder: "Password", autofocus: true %>
+      <%= f.password_field :password, placeholder: "Password", autofocus: true %>
     </div>
 
     <%= f.submit "Create User" %>

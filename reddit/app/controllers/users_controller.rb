@@ -15,14 +15,19 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params) # can use this once user_parms is finished.
     # @new_user = User.new(params[:user])
-    @user.save
+    if @user.save
+      flash[:notice] = "Sucessfully created"
+      redirect_to @user
+    else
+      render :new # When will it ever go into this case?
+    end
     # redirect_to :show
-    render plain: params[:user].inspect
+    # render plain: params[:user].inspect
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:username, :first_name, :last_name, :email, :encrypted_password)
+    params.require(:user).permit(:username, :first_name, :last_name, :email, :password)
   end
 end

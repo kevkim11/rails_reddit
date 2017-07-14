@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
 
+  root to: 'home#index'
+
   resources :users # :users, only: [:show, :new, :create]
 
-  resources :subreddits
+  # Nested resources, so that in subreddits you will show a lot of posts inside the subreddit
+  resources :subreddits, only: [:index, :show] do
+    resources :posts, only: [:index, :show] do
+      resources :comments
+    end
+  end
 
 end

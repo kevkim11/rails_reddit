@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170710212233) do
+ActiveRecord::Schema.define(version: 20170712221652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,15 +22,13 @@ ActiveRecord::Schema.define(version: 20170710212233) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "post_id"
-    t.integer "parent_commment_id"
-    t.index ["parent_commment_id"], name: "index_comments_on_parent_commment_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
     t.string "title", default: "", null: false
-    t.integer "type"
+    t.integer "post_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -56,7 +54,7 @@ ActiveRecord::Schema.define(version: 20170710212233) do
     t.string "first_name"
     t.string "last_name"
     t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
+    t.string "password", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
